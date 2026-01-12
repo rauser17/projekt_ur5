@@ -5,9 +5,18 @@ from launch_ros.actions import Node
 import xacro
 
 def generate_launch_description():
-    ur_pkg_path = get_package_share_directory('ur_description')    
+    # Pobieranie ścieżek
+    ur_pkg_path = get_package_share_directory('ur_description')
+    pkg_share = get_package_share_directory('sterowanie_kamera')
+    
+    # PUNKT B: Ścieżka do konfiguracji RViz
+    rviz_config_path = os.path.join(pkg_share, 'launch', 'view_config.rviz')
+
+    # PUNKT A: Dynamiczna ścieżka do obrazka
+    img_path = os.path.join(pkg_share, '..', '..', '..', '..', 'src', 'projekt_ur5', 'test_obraz.png')
+
+    # Konfiguracja robota UR5
     xacro_file = os.path.join(ur_pkg_path, 'urdf', 'ur.urdf.xacro')
- 
     robot_description_config = xacro.process_file(
         xacro_file, 
         mappings={
@@ -16,12 +25,10 @@ def generate_launch_description():
             'joint_limit_params': os.path.join(ur_pkg_path, 'config', 'ur5', 'joint_limits.yaml'),
             'kinematics_params': os.path.join(ur_pkg_path, 'config', 'ur5', 'default_kinematics.yaml'),
             'physical_params': os.path.join(ur_pkg_path, 'config', 'ur5', 'physical_parameters.yaml'),
-            'visual_params': os.path.join(ur_pkg_path, 'config', 'ur5', 'visual_parameters.yaml')
+            'visual_params': os.path.join(ur_pkg_path, 'config', 'ur5', 'visual_parameters.yaml'),
         }
     )
     robot_desc = robot_description_config.toxml()
-
-    img_path = os.path.expanduser('~/ros2_ws/test_obraz.png')
 
     return LaunchDescription([
         Node(
@@ -36,6 +43,7 @@ def generate_launch_description():
             executable='rviz2',
             name='rviz2',
             output='screen',
+            arguments=['-d', rviz_config_path],
         ),
         Node(
             package='image_publisher',
