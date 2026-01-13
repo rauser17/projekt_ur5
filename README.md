@@ -13,7 +13,7 @@ Do poprawnego działania projektu wymagane są:
 ## Środowisko
 Projekt został przygotowany w oparciu o kontenerystykę, co zapewnia spójność środowiska:
 * **System operacyjny:** Ubuntu 24.04 LTS (Noble Numbat)
-* **Middleware:** ROS 2 Jazzy Jalisco
+* **Middleware:** ROS 2 Jazzy
 
 ## Pobranie i uruchomienie projektu
 1. Mozna sklonowac repo na dysk:
@@ -21,23 +21,12 @@ Projekt został przygotowany w oparciu o kontenerystykę, co zapewnia spójnoś�
    git clone [https://github.com/rauser17/projekt_ur5.git](https://github.com/rauser17/projekt_ur5.git)
    cd projekt_ur5# Projekt UR5
 
-## Autorzy ##
-Bartosz Dworazny
-Wojsciech Czarnowski
-
-## Wymagania
-Linux,Docker,Git
-
-## Srodowisko w kontenerze
-ROS: ROS 2 Jazzy
-System: Linux 24.04 LTS
-
 ## Pobranie i uruchomienie projektu
 1. sklonowanie repozytorium na dysk;
 2. nadanie uprawnien do wykonania skrytpu startowego oraz zezwolenie na wyswietlanie okien z Dockera: `chmod +x start_docker.sh`, `xhost +`;
 3. uruchomienie skryptu (budowa+start): `./start_docker.sh`;
 
-#Opis projektu:
+## Opis elementów zrealizowanych w projekcie:
 1. **Logika sterowania**
     * Kliknięcie powyżej środka: Ruch ramienia w górę.
     * Kliknięcie poniżej środka: Ruch ramienia w dół.
