@@ -9,11 +9,11 @@ def generate_launch_description():
     ur_pkg_path = get_package_share_directory('ur_description')
     pkg_share = get_package_share_directory('sterowanie_kamera')
     
-    # PUNKT B: Ścieżka do konfiguracji RViz
+    # Ścieżka do konfiguracji RViz
     rviz_config_path = os.path.join(pkg_share, 'launch', 'view_config.rviz')
 
-    # PUNKT A: Dynamiczna ścieżka do obrazka
-    img_path = os.path.join(pkg_share, '..', '..', '..', '..', 'src', 'projekt_ur5', 'test_obraz.png')
+    # Dynamiczna ścieżka do obrazka
+    img_path = '/root/ros2_ws/test_obraz.png'
 
     # Konfiguracja robota UR5
     xacro_file = os.path.join(ur_pkg_path, 'urdf', 'ur.urdf.xacro')
